@@ -1,0 +1,40 @@
+h4 {
+    color: #FFFFFF;
+    text-decoration: none;
+    margin-right: 60px;
+    font-style: italic;
+}
+.navbar-light .navbar-nav .nav-link {
+    color: #818182;
+    font-weight: bold;
+}
+.btn-primary {
+    background-color: #2e4a70;
+    border-color: #2e4a70;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 20px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px ;
+}
+.btn-danger {
+    font-weight: bold;
+}
+.table td, .table th {
+    vertical-align: text-bottom;
+}
+.active {
+    color: #FFFFFF !important;
+}
+@media screen and (max-width: 600px) {
+    .punishment {
+        display: block;
+    }
+    .table td, .table th {
+        border-top: none;
+    }
+    tr {
+        border-bottom: 1px solid #dee2e6;
+    }
+}
