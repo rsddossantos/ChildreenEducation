@@ -18,10 +18,13 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             @foreach ($child as $item)
-            <li class="nav-item">
-                <a class="nav-link @php echo $item->active==1 ?'active':'' @endphp" href="{{url('/list')}}/{{$item->id}}">{{$item->name}}</a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link @php echo $item->active==1 ?'active':'' @endphp" href="{{url('/list')}}/{{$item->id}}">{{$item->name}}</a>
+                </li>
             @endforeach
+                <li class="nav-item">
+                    <a class="nav-link @php echo isset($report) ?'active':'' @endphp" href="{{url('/report')}}">CASTIGOS</a>
+                </li>
         </ul>
     </div>
 </nav>
@@ -29,6 +32,21 @@
     <section>
         @yield('content')
     </section>
+</div>
+<!--Modal Confirm-->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="confirm">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Confirmar Marcação</h5>
+            </div>
+            <div class="modal-body" id="myModalLabel">Confirmar</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" id="modal-btn-si">OK</button>
+                <button type="button" class="btn btn-default" id="modal-btn-no">Cancelar</button>
+            </div>
+        </div>
+    </div>
 </div>
 <script type="text/javascript" src="{{url('assets/js/home.js')}}"></script>
 </body>

@@ -7,18 +7,19 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function index(){}
+    public $child;
+
+    public function __construct()
+    {
+        DB::table('childs')->update(['active'=>'0']);
+        $this->child = DB::table('childs')->get();
+    }
 
     public function list($idChild = 1)
     {
-        DB::table('childs')->update(['active'=>'0']);
         DB::table('childs')->where('id',$idChild)->update(['active'=>'1']);
-
-        $list = DB::table('disciplines')
-            ->where('id_child', $idChild)
-            ->get();
-        $child = DB::table('childs')
-            ->get();
+        $list = DB::table('disciplines')->where('id_child', $idChild)->get();
+        $child = DB::table('childs')->get();
 
         return view('list', ['list' => $list, 'child' => $child]);
     }
@@ -29,10 +30,10 @@ class HomeController extends Controller
             ->where('id_child', $idChild)
             ->where('id',$id)
             ->get();
-        echo '<pre>';
+
         if (($id == 5 || $id == 25)) {
             if ($list[0]->points < 4) {
-                if($this->fullPunish($list)) {
+                if($list[0]->punishment1+$list[0]->punishment2+$list[0]->punishment3 == 3) {
                     return redirect('/list/'.$idChild)->with('warning', 'Algum castigo deve ser cumprido!');
                 } else {
                     DB::table('disciplines')->where('id',$id)->increment('points');
@@ -48,7 +49,7 @@ class HomeController extends Controller
                 }
             }
         } elseif ($list[0]->points < 2) {
-            if($this->fullPunish($list)) {
+            if($list[0]->punishment1+$list[0]->punishment2+$list[0]->punishment3 == 3) {
                 return redirect('/list/'.$idChild)->with('warning', 'Algum castigo deve ser cumprido!');
             } else {
                 DB::table('disciplines')->where('id',$id)->increment('points');
@@ -74,12 +75,19 @@ class HomeController extends Controller
         return redirect('/list/'.$child[0]->id_child);
     }
 
-    private function fullPunish($list)
+    public function report()
     {
-        if ($list[0]->punishment1+$list[0]->punishment2+$list[0]->punishment3 == 3) {
-            return true;
-        } else{
-            return false;
-        }
+        $rep = DB::table(DB::raw('(
+        SELECT
+            (SELECT name FROM childs WHERE disciplines.id_child=childs.id) AS child,
+            title,
+            punishment1+punishment2+punishment3 AS punish
+        FROM disciplines
+        )d'))
+            ->where('d.punish','>','0')
+            ->orderBy('d.child')
+            ->get();
+
+        return view('report', ['report' => $rep, 'child' => $this->child]);
     }
 }

@@ -18,4 +18,4 @@ Route::get('/', [HomeController::class, 'list']);
 Route::get('/list/{idChild}', [HomeController::class, 'list']);
 Route::get('/addPoints/{id}/{idChild}', [HomeController::class, 'addPoints']);
 Route::get('/clearPunish/{id}/{punish}', [HomeController::class, 'clearPunish']);
-
+Route::get('/report', [HomeController::class, 'report']);

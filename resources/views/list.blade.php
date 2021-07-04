@@ -17,32 +17,30 @@
             @foreach ($list as $item)
                 <tr>
                     <td>
-                        <a href="{{url('addPoints')}}/{{$item->id}}/{{$item->id_child}}">
-                            <button class="btn btn-primary"
-                                    onClick="return confirm('Deseja incrementar a pontuação para @php echo $item->id_child == 1 ? 'a BIANCA' : 'o DIOGO'; @endphp ?')">{{$item->points}}
-                            </button>
-                        </a>
+                        <button class="btn btn-primary"
+                                onClick="confirm('Deseja incrementar a pontuação para @php echo $item->id_child == 1 ? 'a BIANCA' : 'o DIOGO'; @endphp?','{{url('addPoints')}}/{{$item->id}}/{{$item->id_child}}')">{{$item->points}}
+                        </button>
                     </td>
                     <td width="70%">
                         {{$item->title}}
                     </td>
                     <td class="punishment">
                         @if ($item->punishment1 == 1)
-                            <a href="/clearPunish/{{$item->id}}/1" onclick="return confirm('Deseja marcar o castigo como realizado?')"><img width="50px" src="{{url('assets/images/remove.png')}}"/></a>
+                            <a href="#" onclick="confirm('Deseja marcar o castigo como realizado?','/clearPunish/{{$item->id}}/1')"><img width="50px" src="{{url('assets/images/remove.png')}}"/></a>
                         @else
                             <img width="50px" src="{{url('assets/images/check.png')}}"/>
                         @endif
                     </td>
                     <td class="punishment">
                         @if ($item->punishment2 == 1)
-                            <a href="/clearPunish/{{$item->id}}/2" onclick="return confirm('Deseja marcar o castigo como realizado?')"><img width="50px" src="{{url('assets/images/remove.png')}}"/></a>
+                            <a href="#" onclick="return confirm('Deseja marcar o castigo como realizado?','/clearPunish/{{$item->id}}/2')"><img width="50px" src="{{url('assets/images/remove.png')}}"/></a>
                         @else
                             <img width="50px" src="{{url('assets/images/check.png')}}"/>
                         @endif
                     </td>
                     <td class="punishment">
                         @if ($item->punishment3 == 1)
-                            <a href="/clearPunish/{{$item->id}}/3" onclick="return confirm('Deseja marcar o castigo como realizado?')"><img width="50px" src="{{url('assets/images/remove.png')}}"/></a>
+                            <a href="#" onclick="return confirm('Deseja marcar o castigo como realizado?','/clearPunish/{{$item->id}}/3')"><img width="50px" src="{{url('assets/images/remove.png')}}"/></a>
                         @else
                             <img width="50px" src="{{url('assets/images/check.png')}}"/>
                         @endif
