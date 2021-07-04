@@ -8,7 +8,7 @@
             <tr>
                 <th>Criança</th>
                 <th>Disciplina</th>
-                <th>Qtde Castigo</th>
+                <th>Qtde</th>
             </tr>
         </thead>
         <tbody>
