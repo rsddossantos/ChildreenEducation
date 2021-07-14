@@ -27,10 +27,14 @@ h4 {
 .active {
     color: #FFFFFF !important;
 }
+.modal-content {
+    border-radius: .4rem;
+}
 .modal-header {
     background-color: #2e4a70;
     color: #FFFFFF;
 }
+
 @media screen and (max-width: 600px) {
     .punishment {
         display: block;
