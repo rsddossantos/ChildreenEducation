@@ -6,6 +6,7 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{url('assets/bootstrap/css/bootstrap.min.css')}}" />
     <link rel="stylesheet" href="{{url('assets/css/home.css')}}" />
+    <link rel="icon" type="image/png" href="{{url('assets/images/favicon.png')}}" />
     <script src="{{url('assets/js/jquery.js')}}"></script>
     <script src="{{url('assets/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 </head>
